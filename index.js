@@ -15,14 +15,15 @@ function distanceFromHqInBlocks(pickupLocation) {
   function calculatesFarePrice(startBlock, endBlock) {
     const distance = distanceTravelledInFeet(startBlock, endBlock);
   
-    if (distance <= 400) {
-      return 0;
-    } else if (distance <= 2000) {
-      return (distance - 400) * 0.02;
-    } else if (distance <= 2500) {
-      return 25;
-    } else {
-      return 'cannot travel that far';
+    switch (true) {
+      case distance <= 400:
+        return 0;
+      case distance > 400 && distance <= 2000:
+        return (distance - 400) * 0.02;
+      case distance > 2000 && distance <= 2500:
+        return 25;
+      default:
+        return 'cannot travel that far';
     }
   }
   
